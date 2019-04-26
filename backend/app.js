@@ -2,8 +2,10 @@ const express = require('express');
 const dotenv = require('dotenv').config();
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
+
 const { getConversations } = require('./Conversations');
 const { getSentiments } = require('./AnalyzeSentiment');
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,7 +22,7 @@ app.get('/data', async (req, res) => {
   });
   if (data.status === 200) {
     const channelData = await data.json();
-    const conversations = await getConversations(channelData.channels);
+    const conversations = await getConversations(channelData.channels, process.env.SLACK_TOKEN);
     const sentiments = await getSentiments(conversations);
     res.status(200).json(sentiments);
   } else {
