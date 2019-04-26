@@ -1,22 +1,28 @@
 const Slack = require('slack');
 
 const getConversations = async (channelList, token) => {
-  await Promise.all(channelList.map(async channel => {
-    const data = await Slack.conversations.history({token, channel: channel.id});
-    console.log(data);
-    if (data.status === 200) {
-      const conversationHistory = await data.json();
-      console.log(conversationHistory);
-      return channel;
-    } else {
-      console.log(data);
-      return {
-        id: channel.id,
-        error: 'could not get channel history',
-      }
-    }
-  }));
-  return channelList;
+  // Create different categories to filter messages by
+  const conversations = {
+    workspace: [],
+    channels: {},
+    employees: {}
+  };
+  for (const channel of channelList) {
+    const data = await Slack.conversations.history({token, channel: channel.id}); 
+    conversations.channels[channel.id] = [];
+    if (data.ok) {
+      data.messages.forEach(message => {
+        conversations.workspace.push(message.text);
+        conversations.channels[channel.id].push(message.text);
+        if (conversations.employees[message.user]) {
+          conversations.employees[message.user].push(message.text);
+        } else {
+          conversations.employees[message.user] = [message.text];
+        }
+      });
+    };
+  };
+  return conversations;
 }
 
 module.exports = {
