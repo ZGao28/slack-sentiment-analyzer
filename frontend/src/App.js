@@ -153,14 +153,14 @@ class App extends Component {
           ]
         }
       ]
-    }), 3000)
+    }), 500)
   }
 
   render() {
     const { slackUrl, analysing, tones, sentenceTones } = this.state;
     return (
       <div className="App">
-        <h1>Fam Are Yalls Hoppy?</h1>
+        <h1>Duck?</h1>
         <input
           placeholder='insert slack url here'
           value={slackUrl}

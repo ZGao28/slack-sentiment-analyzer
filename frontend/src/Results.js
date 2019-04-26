@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Menu from './Menu';
+import Graph from './Graph';
+import './Results.css'
 
 class Results extends Component {
   constructor() {
@@ -16,9 +18,11 @@ class Results extends Component {
   }
 
   render() {
+    const { tones, sentenceTones } = this.props;
     return (
-      <div>
+      <div className='container'>
         <Menu changeCategory={this.changeCategory}></Menu>
+        <Graph tones={tones} sentenceTones={sentenceTones}></Graph>
       </div>
     )
   }

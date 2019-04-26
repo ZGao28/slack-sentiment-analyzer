@@ -8,9 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
@@ -18,8 +15,9 @@ import StarBorder from '@material-ui/icons/StarBorder';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    maxWidth: '360px',
     backgroundColor: theme.palette.background.paper,
+    margin: '0 30px',
   },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
@@ -47,7 +45,7 @@ class Menu extends Component {
       >
         <ListItem button onClick={() => changeCategory('workspace')}>
           <ListItemIcon>
-            <InboxIcon />
+            <StarBorder />
           </ListItemIcon>
           <ListItemText inset primary="Workspace" />
           {/* {this.state.channelsSelected ? <ExpandLess /> : <ExpandMore />} */}
@@ -105,7 +103,7 @@ class Menu extends Component {
         </Collapse>
         <ListItem button onClick={() => this.handleClick('userSelected')}>
           <ListItemIcon>
-            <InboxIcon />
+            <StarBorder />
           </ListItemIcon>
           <ListItemText inset primary="Employees" />
           {this.state.userSelected ? <ExpandLess /> : <ExpandMore />}
