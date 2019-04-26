@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 
 import Menu from './Menu';
 import Graph from './Graph';
@@ -43,9 +43,7 @@ class Results extends Component {
     const { tones, sentenceTones } = this.props;
     return (
       <div className='container'>
-        <Paper className='menu'>
-          <Menu changeCategory={this.changeCategory}></Menu>
-        </Paper>
+        <Menu changeCategory={this.changeCategory}></Menu>
         <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
       </div>
     )
