@@ -9,12 +9,19 @@ const toneAnalyzer = new ToneAnalyzerV3({
 });
 
 const getSentiments = async (conversations) => {
-  const toneParams = {
+  const workspaceToneParams = {
     tone_input: { 'text': conversations.workspace.join('. ') },
     content_type: 'application/json',
   };
-  const workspaceAnalysis = await toneAnalyzer.tone(toneParams);
-  return workspaceAnalysis;
+  conversations.workspace.sentiment = await toneAnalyzer.tone(workspaceToneParams);
+  for (channel in conversations.channels) {
+    const channelToneParams = {
+      tone_input: { 'text': conversations.workspace.join('. ') },
+      content_type: 'application/json',
+    }
+    channel.sentiment = await toneAnalyzer.tone(channelToneParams);
+  };
+  return conversations.workspace.sentiment;
 }
 
 module.exports = {

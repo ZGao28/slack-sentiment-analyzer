@@ -21,8 +21,7 @@ app.get('/data', async (req, res) => {
     }
   });
   if (data.status === 200) {
-    const channelData = await data.json();
-    const conversations = await getConversations(channelData.channels, process.env.SLACK_TOKEN);
+    const conversations = await getConversations([{id: 'C446DEZ0B'}, {id: 'CA8DB0SUQ'}, {id: 'C90EZ0RMW'}], process.env.SLACK_TOKEN);
     const sentiments = await getSentiments(conversations);
     res.status(200).json(sentiments);
   } else {
