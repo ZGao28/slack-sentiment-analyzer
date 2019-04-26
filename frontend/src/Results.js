@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Paper from '@material-ui/core/Paper';
+import Paper from '@material-ui/core/Paper';
 
 import Menu from './Menu';
 import Graph from './Graph';
@@ -42,9 +42,19 @@ class Results extends Component {
   render() {
     const { tones, sentenceTones } = this.props;
     return (
-      <div className='container'>
-        <Menu changeCategory={this.changeCategory}></Menu>
-        <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1400px' }}>
+        <div className='container'>
+          <Menu changeCategory={this.changeCategory}></Menu>
+          <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
+        </div>
+        <div>
+          <Paper>
+            <h2>Sup duck</h2>
+            <h2>Sup duck</h2>
+            <h2>Sup duck</h2>
+            <h2>Sup duck</h2>
+          </Paper>
+        </div>
       </div>
     )
   }
