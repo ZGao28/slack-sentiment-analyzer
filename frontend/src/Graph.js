@@ -5,36 +5,31 @@ import {
 } from 'recharts';
 
 
-// const data = [
-//   {
-//     name: 'Anger', uv: 4000,
-//   },
-//   {
-//     name: 'Fear', uv: 3000,
-//   },
-//   {
-//     name: 'Joy', uv: 2000,
-//   },
-//   {
-//     name: 'Sadness', uv: 2780,
-//   },
-//   {
-//     name: 'Analytical', uv: 1890,
-//   },
-//   {
-//     name: 'Confident', uv: 2390,
-//   },
-//   {
-//     name: 'Tentative', uv: 3490,
-//   },
-// ];
+const tones = [
+  'Anger',
+  'Fear',
+  'Joy',
+  'Sadness',
+  'Analytical',
+  'Confident',
+  'Tentative',
+];
 
 class Graph extends Component {
   render() {
-    const data = this.props.tones.map(tone => {
+    // const data = this.props.tones.map(tone => {
+    //   return {
+    //     name: tone.tone_name,
+    //     score: tone.score,
+    //   }
+    // })
+    const data = tones.map(tone => {
+      const matchedTone = this.props.tones.find(t => (
+        t.tone_name === tone
+      ))
       return {
-        name: tone.tone_name,
-        score: tone.score,
+        name: tone,
+        score: matchedTone ? matchedTone.score : 0,
       }
     })
     return (
