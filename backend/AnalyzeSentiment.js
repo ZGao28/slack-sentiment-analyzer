@@ -13,7 +13,6 @@ const getSentiments = async (conversations) => {
     tone_input: { 'text': conversations.workspace.join('. ') },
     content_type: 'application/json',
   };
-  
   const workspaceAnalysis = await toneAnalyzer.tone(toneParams);
   return workspaceAnalysis;
 }
