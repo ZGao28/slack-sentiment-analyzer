@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Paper from '@material-ui/core/Paper';
+
 import Menu from './Menu';
 import Graph from './Graph';
 import './Results.css'
@@ -8,6 +10,7 @@ class Results extends Component {
     super();
     this.state = {
       resultsDisplayed: '',
+      currentTone: '',
       toneInfo: [],
     };
 
@@ -33,14 +36,16 @@ class Results extends Component {
       return arr;
     }, []);
 
-    this.setState({ toneInfo })
+    this.setState({ currentTone: name, toneInfo })
   }
 
   render() {
     const { tones, sentenceTones } = this.props;
     return (
       <div className='container'>
-        <Menu changeCategory={this.changeCategory}></Menu>
+        <Paper className='menu'>
+          <Menu changeCategory={this.changeCategory}></Menu>
+        </Paper>
         <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
       </div>
     )

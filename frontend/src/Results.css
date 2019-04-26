@@ -1,4 +1,10 @@
 .container {
   display: flex;
   margin-top: 50px;
+  justify-content: space-evenly;
+}
+
+.menu {
+  width: 100%;
+  max-width: 360px;
 }
