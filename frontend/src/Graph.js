@@ -36,7 +36,6 @@ class Graph extends Component {
         score: tone.score,
       }
     })
-    console.log(data)
     return (
       <BarChart
         width={900}
@@ -51,7 +50,7 @@ class Graph extends Component {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="score" fill="#82ca9d" />
+        <Bar onMouseUp={(e) => this.props.showDetails(e)} dataKey="score" fill="#8884d8" />
       </BarChart>
     );
   }
