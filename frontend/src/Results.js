@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import Menu from './Menu';
 import Graph from './Graph';
+import Table from './Table';
 import './Results.css'
 
 class Results extends Component {
@@ -42,9 +43,14 @@ class Results extends Component {
   render() {
     const { tones, sentenceTones } = this.props;
     return (
-      <div className='container'>
-        <Menu changeCategory={this.changeCategory}></Menu>
-        <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', maxWidth: '1400px', marginBottom: '100px' }}>
+        <div className='container'>
+          <Menu changeCategory={this.changeCategory}></Menu>
+          <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
+        </div>
+        {this.state.toneInfo.length > 0 &&
+          <Table toneInfo={this.state.toneInfo}></Table>
+        }
       </div>
     )
   }

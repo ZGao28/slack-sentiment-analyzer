@@ -52,7 +52,7 @@ class Graph extends Component {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar onMouseUp={(e) => this.props.showDetails(e)} dataKey="score" fill="#8884d8" />
+          <Bar onMouseUp={(e) => this.props.showDetails(e)} dataKey="score" fill="#2a2686" />
         </BarChart>
       </Paper>
     );

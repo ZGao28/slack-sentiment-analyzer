@@ -168,7 +168,9 @@ class App extends Component {
         />
         <button onClick={() => this.getSentimentResults()}>Check Hoppiness</button>
         {analysing && <h2>Loading...</h2>}
-        {tones && <Results tones={tones} sentenceTones={sentenceTones} />}
+        <div className="Results">
+          {tones && <Results tones={tones} sentenceTones={sentenceTones} />}
+        </div>
       </div>
     );
   }
