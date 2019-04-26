@@ -17,10 +17,11 @@ class Results extends Component {
 
     this.changeCategory = this.changeCategory.bind(this);
     this.showDetails = this.showDetails.bind(this);
+    this.table = React.createRef();
   }
 
   changeCategory(category) {
-    this.setState({ resultsDisplayed: category })
+    this.setState({ resultsDisplayed: category });
   }
 
   showDetails(e) {
@@ -37,7 +38,11 @@ class Results extends Component {
       return arr;
     }, []);
 
-    this.setState({ currentTone: name, toneInfo })
+    this.setState(
+      { currentTone: name, toneInfo },
+      () => this.table.current.scrollIntoView()
+    );
+
   }
 
   render() {
@@ -48,9 +53,11 @@ class Results extends Component {
           <Menu changeCategory={this.changeCategory}></Menu>
           <Graph tones={tones} sentenceTones={sentenceTones} showDetails={this.showDetails}></Graph>
         </div>
-        {this.state.toneInfo.length > 0 &&
-          <Table toneInfo={this.state.toneInfo}></Table>
-        }
+        <div ref={this.table}>
+          {this.state.toneInfo.length > 0 &&
+            <Table toneInfo={this.state.toneInfo}></Table>
+          }
+        </div>
       </div>
     )
   }

@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 import Results from './Results'
+import { withStyles } from '@material-ui/core/styles';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  input: {
+    margin: theme.spacing.unit,
+  },
+  button: {
+    margin: '0 10px',
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -170,20 +186,31 @@ class App extends Component {
     const { slackUrl, analysing, tones, sentenceTones } = this.state;
     return (
       <div className="App">
-        <h1>Duck?</h1>
-        <input
-          placeholder='insert slack url here'
-          value={slackUrl}
-          onChange={(e) => this.setState({ slackUrl: e.target.value })}
-        />
-        <button onClick={() => this.getSentimentResults()}>Check Hoppiness</button>
-        {analysing && <h2>Loading...</h2>}
-        <div className="Results">
-          {tones && <Results tones={tones} sentenceTones={sentenceTones} />}
+        <h1>Zi and Dervis' (almost great but not really ('but lots of potential' - Dervis)) hackathon project</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Input
+            placeholder='insert slack url here'
+            value={slackUrl}
+            onChange={(e) => this.setState({ slackUrl: e.target.value })}
+          />
+          <Button
+            variant="contained"
+            color="primary" className={this.props.classes.button}
+            onClick={() => this.getSentimentResults()}
+          >
+            Check Hoppiness
+      </Button>
         </div>
+        {/* <button onClick={() => this.getSentimentResults()}>Check Hoppiness</button> */}
+        {analysing ?
+          <h2>Loading...</h2> :
+          <div className="Results">
+            {tones && <Results tones={tones} sentenceTones={sentenceTones} />}
+          </div>
+        }
       </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);
