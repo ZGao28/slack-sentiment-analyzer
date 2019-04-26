@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Results from './Results'
 
 class App extends Component {
   constructor(props) {
@@ -156,16 +157,18 @@ class App extends Component {
   }
 
   render() {
+    const { slackUrl, analysing, tones, sentenceTones } = this.state;
     return (
       <div className="App">
         <h1>Fam Are Yalls Hoppy?</h1>
         <input
           placeholder='insert slack url here'
-          value={this.state.slackUrl}
+          value={slackUrl}
           onChange={(e) => this.setState({ slackUrl: e.target.value })}
         />
         <button onClick={() => this.getSentimentResults()}>Check Hoppiness</button>
-        {this.state.analysing && <h2>Loading...</h2>}
+        {analysing && <h2>Loading...</h2>}
+        {tones && <Results tones={tones} sentenceTones={sentenceTones} />}
       </div>
     );
   }
